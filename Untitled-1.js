@@ -13,14 +13,9 @@ router.get('/', async function(req, res, next) {
 
 });
 
-router.get('/register', async function(req, res, next) {
-    const {email, password} = req.query;
-    console.log(email,password)
-    if (!email || !password){
-      return res.status(400).send({
-        message: "Email or password missing."
-      })
-    }
+router.get('/register', async function(req, res) {
+    const {email} = req.query;
+    console.log(email)
   
     const {valid, reason, validators} = await isEmailValid(email);
   
