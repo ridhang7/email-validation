@@ -31,6 +31,5 @@ router.get('/register', async function(req, res) {
   
   });
 
-  const app = express();
   app.use(router)
   app.listen(8000,()=>console.log("server running on port 8000"))
