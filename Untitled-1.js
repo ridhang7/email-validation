@@ -33,3 +33,4 @@ router.get('/register', async function(req, res) {
 
   app.use(router)
   app.listen(8000,()=>console.log("server running on port 8000"))
+exports.app = app;
