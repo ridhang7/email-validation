@@ -3,7 +3,17 @@ const router = express.Router();
 const emailValidator = require('deep-email-validator');
 
 const app = express();
+//https
+var https = require('https');
+var fs = require('fs');
 
+var options = {
+  key: fs.readFileSync("/etc/letsencrypt/live/workpatternz.in/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/workpatternz.in/cert.pem"),
+  ca: fs.readFileSync("/etc/letsencrypt/live/workpatternz.in/cert.pem")
+};
+
+//https end
 
 async function isEmailValid(email) {
  return emailValidator.validate(email)
@@ -30,6 +40,10 @@ router.get('/register', async function(req, res) {
     })
   
   });
+https.createServer(options, function (req, res) {
+ res.writeHead(200);
+ res.end("Welcome to Node.js");
+ app.use(router)
+ //app.listen(80,()=>console.log("server running on port 80"))
+}).listen(443)
 
-  app.use(router)
-  app.listen(80,()=>console.log("server running on port 80"))
