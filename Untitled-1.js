@@ -32,4 +32,4 @@ router.get('/register', async function(req, res) {
   });
 
   app.use(router)
-exports.app = app;
+  app.listen(80,()=>console.log("server running on port 80"))
